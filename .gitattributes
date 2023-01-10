@@ -1,0 +1,7 @@
+* text=auto
+*.cs text diff=csharp
+*.js text
+*.jsx text
+*.html text
+*.css text
+*.md text
