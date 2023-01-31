@@ -37,8 +37,8 @@ export default function MonthSelect() {
           value={month}
           label="Month"
           onChange={handleChange}>
-          {monthData.map((data) => (
-            <MenuItem value={data.value}>{data.name}</MenuItem>
+          {Object.keys(monthData).map((key) => (
+            <MenuItem key={key} value={monthData[key].value}>{monthData[key].name}</MenuItem>
           ))}
         </Select>
       </FormControl>

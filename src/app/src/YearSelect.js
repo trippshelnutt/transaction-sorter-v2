@@ -30,8 +30,8 @@ export default function YearSelect() {
           value={year}
           label="Year"
           onChange={handleChange}>
-          {yearData.map((data) => (
-            <MenuItem value={data.value}>{data.name}</MenuItem>
+          {Object.keys(yearData).map((key) => (
+            <MenuItem key={key} value={yearData[key].value}>{yearData[key].name}</MenuItem>
           ))}
         </Select>
       </FormControl>
