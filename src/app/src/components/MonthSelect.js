@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -28,20 +27,20 @@ export default function MonthSelect() {
   ];
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Month</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={month}
-          label="Month"
-          onChange={handleChange}>
-          {Object.keys(monthData).map((key) => (
-            <MenuItem key={key} value={monthData[key].value}>{monthData[key].name}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">Month</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={month}
+        label="Month"
+        onChange={handleChange}>
+        {Object.keys(monthData).map((key) => (
+          <MenuItem key={key} value={monthData[key].value}>
+            {monthData[key].name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }

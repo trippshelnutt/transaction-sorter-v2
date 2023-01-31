@@ -7,15 +7,19 @@ import YearSelect from './YearSelect';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app-header">
         <p>Transaction Sorter</p>
-        <CategorySelect></CategorySelect>
-        <MonthSelect></MonthSelect>
-        <YearSelect></YearSelect>
-        <Button variant="contained">Fetch</Button>
-        <TransactionTable></TransactionTable>
       </header>
+      <section>
+        <div className="app-selection">
+          <CategorySelect />
+          <MonthSelect />
+          <YearSelect />
+          <Button variant="contained">Fetch</Button>
+        </div>
+        <TransactionTable />
+      </section>
     </div>
   );
 }
