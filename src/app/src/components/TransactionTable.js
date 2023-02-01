@@ -68,7 +68,7 @@ const headCells = [
     label: 'Date',
   },
   {
-    id: 'decimalAmount',
+    id: 'decimal_amount',
     numeric: true,
     label: 'Amount',
   },
@@ -159,7 +159,7 @@ export default function TransactionTable(props) {
                     <TableRow hover tabIndex={-1} key={index}>
                       <TableCell>{row.payee_name}</TableCell>
                       <TableCell align="right">{formatDate(row.date)}</TableCell>
-                      <TableCell align="right">{formatPrice(row.decimalAmount)}</TableCell>
+                      <TableCell align="right">{formatPrice(row.decimal_amount)}</TableCell>
                     </TableRow>
                   );
                 })}

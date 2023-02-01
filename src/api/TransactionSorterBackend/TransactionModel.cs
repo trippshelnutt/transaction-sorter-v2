@@ -16,6 +16,7 @@ public class TransactionModel
     [JsonPropertyName("date")]
     public DateTime Date { get; set; } = new DateTime();
 
+    [JsonPropertyName("decimal_amount")]
     public decimal DecimalAmount
     {
         get
@@ -24,6 +25,7 @@ public class TransactionModel
         }
     }
 
+    [JsonPropertyName("display_amount")]
     public string DisplayAmount
     {
         get
