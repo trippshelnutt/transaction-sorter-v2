@@ -11,7 +11,7 @@ function App() {
       <header className="app-header">
         <p>Transaction Sorter</p>
       </header>
-      <section>
+      <section className="app-section">
         <div className="app-selection">
           <CategorySelect />
           <MonthSelect />

@@ -21,7 +21,7 @@ const AppPicker = () => {
       </header>
       <form onSubmit={goToStore}>
         <div className="app-picker-app-id">
-          <TextField inputRef={myInput} id="outlined-basic" label="Outlined" variant="outlined" />
+          <TextField inputRef={myInput} id="outlined-basic" label="App Id" variant="outlined" />
           <Button variant="contained" type="submit">
             Open
           </Button>
