@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './AppPicker.css';
 
-const AppPicker = () => {
+export default function AppPicker() {
   let myInput = useRef(null);
   let navigate = useNavigate();
 
@@ -29,6 +29,4 @@ const AppPicker = () => {
       </form>
     </div>
   );
-};
-
-export default AppPicker;
+}

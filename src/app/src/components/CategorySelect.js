@@ -1,15 +1,12 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function CategorySelect() {
-  const [category, setCategory] = React.useState('');
-
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+export default function CategorySelect(props) {
+  const { category, handleChange } = props;
 
   return (
     <FormControl fullWidth>
@@ -29,3 +26,8 @@ export default function CategorySelect() {
     </FormControl>
   );
 }
+
+CategorySelect.propTypes = {
+  category: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};

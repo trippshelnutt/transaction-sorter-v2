@@ -13,10 +13,7 @@ import Paper from '@mui/material/Paper';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
-import sampleData from '../sampleData.json';
 import { formatPrice, formatDate } from '../helpers.js';
-
-const rows = sampleData;
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -117,7 +114,9 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
 };
 
-export default function TransactionTable() {
+export default function TransactionTable(props) {
+  const { rows } = props;
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('amount');
   const [page, setPage] = React.useState(0);
@@ -159,8 +158,8 @@ export default function TransactionTable() {
                   return (
                     <TableRow hover tabIndex={-1} key={index}>
                       <TableCell>{row.payee_name}</TableCell>
-                      <TableCell align='right'>{formatDate(row.date)}</TableCell>
-                      <TableCell align='right'>{formatPrice(row.decimalAmount)}</TableCell>
+                      <TableCell align="right">{formatDate(row.date)}</TableCell>
+                      <TableCell align="right">{formatPrice(row.decimalAmount)}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -189,3 +188,7 @@ export default function TransactionTable() {
     </Box>
   );
 }
+
+TransactionTable.propTypes = {
+  rows: PropTypes.array.isRequired,
+};

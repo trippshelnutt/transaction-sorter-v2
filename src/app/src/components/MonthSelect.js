@@ -1,29 +1,26 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function MonthSelect() {
-  const [month, setMonth] = React.useState('');
-
-  const handleChange = (event) => {
-    setMonth(event.target.value);
-  };
+export default function MonthSelect(props) {
+  const { month, handleChange } = props;
 
   const monthData = [
-    { value: 1, name: 'January' },
-    { value: 2, name: 'February' },
-    { value: 3, name: 'March' },
-    { value: 4, name: 'April' },
-    { value: 5, name: 'May' },
-    { value: 6, name: 'June' },
-    { value: 7, name: 'July' },
-    { value: 8, name: 'August' },
-    { value: 9, name: 'September' },
-    { value: 10, name: 'October' },
-    { value: 11, name: 'November' },
-    { value: 12, name: 'December' },
+    { value: 0, name: 'January' },
+    { value: 1, name: 'February' },
+    { value: 2, name: 'March' },
+    { value: 3, name: 'April' },
+    { value: 4, name: 'May' },
+    { value: 5, name: 'June' },
+    { value: 6, name: 'July' },
+    { value: 7, name: 'August' },
+    { value: 8, name: 'September' },
+    { value: 9, name: 'October' },
+    { value: 10, name: 'November' },
+    { value: 11, name: 'December' },
   ];
 
   return (
@@ -44,3 +41,8 @@ export default function MonthSelect() {
     </FormControl>
   );
 }
+
+MonthSelect.propTypes = {
+  month: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
