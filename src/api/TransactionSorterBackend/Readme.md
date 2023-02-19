@@ -50,9 +50,13 @@ Deploy application
     dotnet lambda deploy-serverless
 ```
 
-Specifically...
+Specifically using the `serverless.template` file...
 ```
     cd "TransactionSorterBackend/src/TransactionSorterBackend"
     dotnet lambda deploy-serverless ts-api -sb ts-dotnet-api
 ```
 
+Or deploy with SAM using the `template.yml` file...
+```
+    sam deploy --stack-name ts-api --s3-bucket ts-dotnet-api --capabilities CAPABILITY_IAM
+```
