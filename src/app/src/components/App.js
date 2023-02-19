@@ -18,12 +18,9 @@ export default function App() {
   const [year, setYear] = React.useState(currentYear);
 
   const handleFetchClicked = async () => {
-    setRows([]);
-
     const apiUrl = new URL(`/Prod/api/transactions/${category}/${year}/${month}`, settings.apiSite);
     const response = await fetch(apiUrl.href);
     const data = await response.json();
-    // console.log(data);
 
     setRows(data);
   };
