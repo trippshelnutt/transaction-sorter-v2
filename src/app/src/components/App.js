@@ -5,11 +5,11 @@ import TransactionTable from './TransactionTable';
 import CategorySelect from './CategorySelect';
 import MonthSelect from './MonthSelect';
 import YearSelect from './YearSelect';
-import sampleData from '../sampleData.json';
+import settings from '../settings.json';
 
 export default function App() {
   const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
+  const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
 
   const [rows, setRows] = React.useState([]);
@@ -17,14 +17,15 @@ export default function App() {
   const [month, setMonth] = React.useState(currentMonth);
   const [year, setYear] = React.useState(currentYear);
 
-  const handleFetchClicked = () => {
+  const handleFetchClicked = async () => {
     setRows([]);
 
-    // TODO: call API to get transactions
-    // /api/transactions/{category}/{year}/{month}
-    console.log(`Calling /api/transactions/${category}/${year}/${month}`);
+    const apiUrl = new URL(`/Prod/api/transactions/${category}/${year}/${month}`, settings.apiSite);
+    const response = await fetch(apiUrl.href);
+    const data = await response.json();
+    // console.log(data);
 
-    setRows(sampleData);
+    setRows(data);
   };
 
   const handleClearClicked = () => {
