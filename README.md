@@ -4,9 +4,11 @@
 ![](https://github.com/trippshelnutt/transaction-sorter-v2/actions/workflows/ci.yml/badge.svg)
 
 ## Projects
-- src/app - TODO
+- src/app
   - JavaScript / React / MUI / Jest
-- src/api/TransactionSorterBackend - TODO
+  - AWS S3 static site hosting
+- src/api/TransactionSorterBackend
   - C# / WebAPI
-- src/api/TransactionSorterBackend.Tests - TODO
+  - AWS Lambda with API Gateway
+- src/api/TransactionSorterBackend.Tests
   - C# / XUnit
