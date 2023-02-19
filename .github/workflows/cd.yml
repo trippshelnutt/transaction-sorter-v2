@@ -61,7 +61,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: src/api
+        working-directory: src/api/TransactionSorterBackend
 
     steps:
     - name: Configure AWS Credentials
