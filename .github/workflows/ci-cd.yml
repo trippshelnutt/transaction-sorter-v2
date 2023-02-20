@@ -1,0 +1,24 @@
+name: CI/CD
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+
+  App (CI):
+    uses: ./.github/workflows/app-ci.yml
+
+  API (CI):
+    uses: ./.github/workflows/api-ci.yml
+
+  App (CD):
+    needs: ["App (CI)", "API (CI)"]
+    uses: ./.github/workflows/app-cd.yml
+
+  API (CD):
+    needs: ["App (CI)", "API (CI)"]
+    uses: ./.github/workflows/api-cd.yml
