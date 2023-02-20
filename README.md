@@ -3,8 +3,6 @@
 ## Status
 ![](https://github.com/trippshelnutt/transaction-sorter-v2/actions/workflows/ci-cd.yml/badge.svg)
 
-Testing a change
-
 ## Projects
 - src/app
   - JavaScript / React / MUI / Jest
