@@ -2,23 +2,31 @@ name: CI/CD
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    types: [opened, edited]
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
 
-  App (CI):
+  App_CI:
     uses: ./.github/workflows/app-ci.yml
 
-  API (CI):
+  API_CI:
     uses: ./.github/workflows/api-ci.yml
 
-  App (CD):
-    needs: ["App (CI)", "API (CI)"]
+  App_CD:
+    needs: [App_CI, API_CI]
+    if: github.event_name != 'pull_request'
     uses: ./.github/workflows/app-cd.yml
+    secrets: inherit
 
-  API (CD):
-    needs: ["App (CI)", "API (CI)"]
+  API_CD:
+    needs: [App_CI, API_CI]
+    if: github.event_name != 'pull_request'
     uses: ./.github/workflows/api-cd.yml
+    secrets: inherit
