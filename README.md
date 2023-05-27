@@ -1,7 +1,8 @@
 # Transaction Sorter v2
 
 ## Status
-![](https://github.com/trippshelnutt/transaction-sorter-v2/actions/workflows/ci-cd.yml/badge.svg)
+![API](https://github.com/trippshelnutt/transaction-sorter-v2/actions/workflows/api-ci.yml/badge.svg)
+![APP](https://github.com/trippshelnutt/transaction-sorter-v2/actions/workflows/app-ci.yml/badge.svg)
 
 ## Projects
 - src/app
