@@ -1,10 +1,10 @@
 ﻿namespace TransactionSorterBackend.Domain;
 
-public class UriBuilder : IUriBuilder
+public class RequestUriBuilder : IRequestUriBuilder
 {
     private readonly IConfiguration _configuration;
 
-    public UriBuilder(IConfiguration configuration)
+    public RequestUriBuilder(IConfiguration configuration)
     {
         _configuration = configuration;
     }

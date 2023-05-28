@@ -4,6 +4,6 @@ namespace TransactionSorterBackend.Models;
 
 public class SingleTransactionData
 {
-    [JsonPropertyName("data")]
+    [JsonPropertyName("transaction")]
     public TransactionModel Transaction { get; set; } = new();
 }

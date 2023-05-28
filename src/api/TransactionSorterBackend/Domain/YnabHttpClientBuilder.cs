@@ -2,11 +2,11 @@
 
 namespace TransactionSorterBackend.Domain;
 
-public class HttpClientBuilder : IHttpClientBuilder
+public class YnabHttpClientBuilder : IYnabHttpClientBuilder
 {
     private readonly IConfiguration _configuration;
 
-    public HttpClientBuilder(IConfiguration configuration)
+    public YnabHttpClientBuilder(IConfiguration configuration)
     {
         _configuration = configuration;
     }

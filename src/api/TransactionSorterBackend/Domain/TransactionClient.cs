@@ -1,19 +1,19 @@
-using TransactionSorterBackend.Models;
+﻿using TransactionSorterBackend.Models;
 
 namespace TransactionSorterBackend.Domain;
 
 public class TransactionClient : ITransactionClient
 {
-    private readonly IHttpClientBuilder _httpClientBuilder;
+    private readonly IYnabHttpClientBuilder _ynabHttpClientBuilder;
 
-    public TransactionClient(IHttpClientBuilder httpClientBuilder)
+    public TransactionClient(IYnabHttpClientBuilder ynabHttpClientBuilder)
     {
-        _httpClientBuilder = httpClientBuilder;
+        _ynabHttpClientBuilder = ynabHttpClientBuilder;
     }
 
     public async Task<GetTransactionsResponse> GetTransactionsAsync(Uri requestUri)
     {
-        using var httpClient = _httpClientBuilder.BuildHttpClient();
+        using var httpClient = _ynabHttpClientBuilder.BuildHttpClient();
 
         var response = await httpClient.GetFromJsonAsync<GetTransactionsResponse>(requestUri);
 
@@ -22,7 +22,7 @@ public class TransactionClient : ITransactionClient
 
     public async Task<GetTransactionResponse> GetTransactionAsync(Uri requestUri)
     {
-        using var httpClient = _httpClientBuilder.BuildHttpClient();
+        using var httpClient = _ynabHttpClientBuilder.BuildHttpClient();
 
         var response = await httpClient.GetFromJsonAsync<GetTransactionResponse>(requestUri);
 

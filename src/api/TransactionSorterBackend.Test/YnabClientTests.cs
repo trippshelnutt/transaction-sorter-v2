@@ -12,7 +12,7 @@ public class YnabClientTests
     {
         var mockConfiguration = new Mock<IConfiguration>();
         var mockTransactionClient = new Mock<ITransactionClient>();
-        var mockUriBuilder = new Mock<IUriBuilder>();
+        var mockUriBuilder = new Mock<IRequestUriBuilder>();
         var result = new YnabClient(mockConfiguration.Object, mockTransactionClient.Object, mockUriBuilder.Object);
         Assert.NotNull(result);
     }

@@ -6,23 +6,24 @@ public class YnabClient : IYnabClient
 {
     private readonly IConfiguration _configuration;
     private readonly ITransactionClient _transactionClient;
-    private readonly IUriBuilder _uriBuilder;
+    private readonly IRequestUriBuilder _requestUriBuilder;
 
-    public YnabClient(IConfiguration configuration, ITransactionClient transactionClient, IUriBuilder uriBuilder)
+    public YnabClient(IConfiguration configuration, ITransactionClient transactionClient, IRequestUriBuilder requestUriBuilder)
     {
         _configuration = configuration;
         _transactionClient = transactionClient;
-        _uriBuilder = uriBuilder;
+        _requestUriBuilder = requestUriBuilder;
     }
 
     public async Task<List<TransactionModel>> GetTransactionsAsync(DateTime startDate, DateTime endDate, string category)
     {
         var categorySetting = $"YNAB:{category}";
         var categoryId = _configuration[categorySetting];
-        var requestUri = _uriBuilder.BuildRequestUriForCategory(categoryId, startDate);
+        var requestUri = _requestUriBuilder.BuildRequestUriForCategory(categoryId, startDate);
         var response = await _transactionClient.GetTransactionsAsync(requestUri);
 
         var transactionTasks = response.Data.Transactions
+            .Where(t => t.Date <= endDate)
             .OrderByDescending(t => t.MilliunitAmount)
             .Select(CheckAndFillParentInformation);
 
@@ -33,7 +34,7 @@ public class YnabClient : IYnabClient
 
     private async Task<TransactionModel> GetTransactionAsync(string transactionId)
     {
-        var requestUri = _uriBuilder.BuildRequestUriForTransaction(transactionId);
+        var requestUri = _requestUriBuilder.BuildRequestUriForTransaction(transactionId);
         var response = await _transactionClient.GetTransactionAsync(requestUri);
 
         return response.Data.Transaction;

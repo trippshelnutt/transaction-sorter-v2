@@ -3,11 +3,10 @@ using Moq;
 using System;
 using TransactionSorterBackend.Domain;
 using Xunit;
-using UriBuilder = TransactionSorterBackend.Domain.UriBuilder;
 
 namespace TransactionSorterBackend.Test;
 
-public class UriBuilderTests
+public class RequestUriBuilderTests
 {
     private const string YnabUrl = "https://ynaburl";
     private const string YnabUrlConfigurationKey = "YNAB:URL";
@@ -41,12 +40,12 @@ public class UriBuilderTests
         Assert.Equal(expectedValue, result.ToString());
     }
 
-    private static IUriBuilder CreateSut()
+    private static IRequestUriBuilder CreateSut()
     {
         var mockConfiguration = new Mock<IConfiguration>();
         mockConfiguration.Setup(c => c[YnabUrlConfigurationKey]).Returns(YnabUrl);
         mockConfiguration.Setup(c => c[YnabBudgetConfigurationKey]).Returns(YnabBudget);
 
-        return new UriBuilder(mockConfiguration.Object);
+        return new RequestUriBuilder(mockConfiguration.Object);
     }
 }
