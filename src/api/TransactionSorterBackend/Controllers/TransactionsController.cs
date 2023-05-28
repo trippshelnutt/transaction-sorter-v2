@@ -1,4 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TransactionSorterBackend.Domain;
+using TransactionSorterBackend.Models;
 
 namespace TransactionSorterBackend.Controllers;
 
@@ -6,54 +8,22 @@ namespace TransactionSorterBackend.Controllers;
 public class TransactionsController : ControllerBase
 {
     private readonly ILogger<TransactionsController> _logger;
+    private readonly IYnabClient _ynabClient;
 
-    public TransactionsController(ILogger<TransactionsController> logger)
+    public TransactionsController(ILogger<TransactionsController> logger, IYnabClient ynabClient)
     {
         _logger = logger;
+        _ynabClient = ynabClient;
     }
 
     [HttpGet("/api/[controller]/{category}/{year}/{month}")]
-    public IEnumerable<TransactionModel> GetTransactions(int year, int month, string category)
+    public async Task<IEnumerable<TransactionModel>> GetTransactions(int year, int month, string category)
     {
-        return new[]
-        {
-            new TransactionModel
-            {
-                MilliunitAmount = 12340,
-                Date = new DateTime(year, month, 1),
-                Payee = "First",
-                ParentTransactionId = "12340"
-            },
-            new TransactionModel
-            {
-                MilliunitAmount = 123450,
-                Date = new DateTime(year, month, 2),
-                Payee = "Second",
-                ParentTransactionId = "123450"
-            },
-            new TransactionModel
-            {
+        var startDate = new DateTime(year, month, 1);
+        var endDate = startDate.AddMonths(1).AddDays(-1);
 
-                MilliunitAmount = 1234560,
-                Date = new DateTime(year, month, 3),
-                Payee = "Third",
-                ParentTransactionId = "1234560"
-            },
-            new TransactionModel
-            {
+        var transactions = await _ynabClient.GetTransactionsAsync(startDate, endDate, category);
 
-                MilliunitAmount = 12345670,
-                Date = new DateTime(year, month, 4),
-                Payee = "Fourth",
-                ParentTransactionId = "12345670"
-            },
-            new TransactionModel
-            {
-                MilliunitAmount = 123456780,
-                Date = new DateTime(year, month, 5),
-                Payee = "Fifth",
-                ParentTransactionId = "123456780"
-            }
-        };
+        return transactions;
     }
 }

@@ -1,3 +1,4 @@
+﻿using TransactionSorterBackend.Models;
 using Xunit;
 
 namespace TransactionSorterBackend.Test;
