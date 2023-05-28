@@ -25,7 +25,7 @@ public class YnabClient : IYnabClient
         var transactionTasks = response.Data.Transactions
             .Where(t => t.Date <= endDate)
             .OrderByDescending(t => t.MilliunitAmount)
-            .Select(CheckAndFillParentInformation);
+            .Select(CheckAndFillParentInformationAsync);
 
         var transactions = await Task.WhenAll(transactionTasks);
 
@@ -40,17 +40,17 @@ public class YnabClient : IYnabClient
         return response.Data.Transaction;
     }
 
-    private async Task<TransactionModel> CheckAndFillParentInformation(TransactionModel transaction)
+    private async Task<TransactionModel> CheckAndFillParentInformationAsync(TransactionModel transaction)
     {
         if (string.IsNullOrEmpty(transaction.Payee))
         {
-            return await FillParentInformation(transaction);
+            return await FillParentInformationAsync(transaction);
         }
 
         return transaction;
     }
 
-    private async Task<TransactionModel> FillParentInformation(TransactionModel transaction)
+    private async Task<TransactionModel> FillParentInformationAsync(TransactionModel transaction)
     {
         var parentTransaction = await GetTransactionAsync(transaction.ParentTransactionId);
         transaction.Payee = parentTransaction.Payee;
