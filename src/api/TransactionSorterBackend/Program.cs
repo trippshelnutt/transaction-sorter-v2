@@ -1,8 +1,14 @@
 ﻿using TransactionSorterBackend.Domain;
+using TransactionSorterBackend.Secrets;
 
 const string TransactionSorterSpecificOrigins = "TransactionSorterSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+if (builder.Environment.IsProduction())
+{
+    builder.Configuration.AddAwsSecretsProvider();
+}
 
 builder.Services.AddCors(options =>
 {
