@@ -18,7 +18,7 @@ public class RequestUriBuilderTests
     {
         const string categoryId = "CATEGORY";
         var startDate = DateTime.Now;
-        var sinceDateString = startDate.ToString("yyyy-M-dd");
+        var sinceDateString = startDate.ToString("yyyy-M-d");
         var expectedValue = $"{YnabUrl}/budgets/{YnabBudget}/categories/{categoryId}/transactions?since_date={sinceDateString}";
         var sut = CreateSut();
 
