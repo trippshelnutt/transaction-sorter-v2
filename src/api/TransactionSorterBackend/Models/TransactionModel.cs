@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace TransactionSorterBackend;
+namespace TransactionSorterBackend.Models;
 
 public class TransactionModel
 {
@@ -14,23 +14,11 @@ public class TransactionModel
     public string ParentTransactionId { get; set; } = string.Empty;
 
     [JsonPropertyName("date")]
-    public DateTime Date { get; set; } = new DateTime();
+    public DateTime Date { get; set; } = new();
 
     [JsonPropertyName("decimal_amount")]
-    public decimal DecimalAmount
-    {
-        get
-        {
-            return ((decimal)MilliunitAmount / 1000.00m);
-        }
-    }
+    public decimal DecimalAmount => (MilliunitAmount / 1000.00m);
 
     [JsonPropertyName("display_amount")]
-    public string DisplayAmount
-    {
-        get
-        {
-            return $"{DecimalAmount:.00}";
-        }
-    }
+    public string DisplayAmount => $"{DecimalAmount:.00}";
 }
