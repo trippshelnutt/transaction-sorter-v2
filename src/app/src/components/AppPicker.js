@@ -1,10 +1,11 @@
 import { React, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './AppPicker.css';
 
 export default function AppPicker(props) {
-  let { navigate } = props;
+  let navigate = useNavigate();
   let myInput = useRef(null);
 
   let goToStore = (event) => {

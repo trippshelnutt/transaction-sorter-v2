@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Transactions from './Transactions';
 
 test('renders app', () => {
-  render(<App />);
+  render(<Transactions />);
   const headerTitle = screen.getByText(/Transaction Sorter/i);
   expect(headerTitle).toBeInTheDocument();
 });
