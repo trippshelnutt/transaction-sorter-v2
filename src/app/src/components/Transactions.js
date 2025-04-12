@@ -12,7 +12,7 @@ export default function App() {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
-  const { logout, user } = useAuth0();
+  const { logout } = useAuth0();
 
   const [rows, setRows] = React.useState([]);
   const [category, setCategory] = React.useState('Tripp');
