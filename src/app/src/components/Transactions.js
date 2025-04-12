@@ -6,11 +6,13 @@ import CategorySelect from './CategorySelect';
 import MonthSelect from './MonthSelect';
 import YearSelect from './YearSelect';
 import settings from '../settings.json';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function App() {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
+  const { logout } = useAuth0();
 
   const [rows, setRows] = React.useState([]);
   const [category, setCategory] = React.useState('Tripp');
@@ -60,6 +62,15 @@ export default function App() {
         </div>
         <TransactionTable rows={rows} />
       </section>
+      <div className="logout-section">
+        <Button 
+          variant="outlined" 
+          onClick={() => logout({ returnTo: window.location.origin })}
+          style={{ marginTop: '20px' }}
+        >
+          Log Out
+        </Button>
+      </div>
     </div>
   );
 }
