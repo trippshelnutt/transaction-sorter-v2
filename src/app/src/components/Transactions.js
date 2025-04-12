@@ -65,7 +65,7 @@ export default function App() {
       <div className="logout-section">
         <Button 
           variant="outlined" 
-          onClick={() => logout({ returnTo: window.location.origin })}
+          onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}
           style={{ marginTop: '20px' }}
         >
           Log Out
